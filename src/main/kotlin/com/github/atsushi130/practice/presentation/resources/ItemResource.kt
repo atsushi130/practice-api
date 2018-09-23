@@ -4,9 +4,9 @@ import com.github.atsushi130.practice.domain.models.Item
 import java.io.Serializable
 
 data class ItemResource(
-        val id: String,
-        val name: String,
-        val subName: String
+    val id: String,
+    val name: String,
+    val subName: String
 ): Serializable {
 
     companion object {
