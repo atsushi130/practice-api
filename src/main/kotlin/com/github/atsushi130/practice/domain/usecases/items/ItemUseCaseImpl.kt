@@ -1,14 +1,15 @@
 package com.github.atsushi130.practice.domain.usecases.items
 
 import com.github.atsushi130.practice.domain.models.Item
+import com.github.atsushi130.practice.domain.shared.UserContainer
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 class ItemUseCaseImpl: ItemUseCase {
 
-    override fun getItems(): List<Item> {
-        val item = Item("1", "1", "name1", "subName1")
-        return Arrays.asList(item)
-    }
+    @Autowired
+    private lateinit var userContainer: UserContainer
+
+    override fun getItems(): List<Item> = this.userContainer.user.items
 }
