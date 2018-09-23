@@ -1,7 +1,7 @@
 package com.github.atsushi130.practice.data.repositories
 
 import com.github.atsushi130.practice.domain.models.Session
-import com.github.atsushi130.practice.domain.repository.SessionRepository
+import com.github.atsushi130.practice.domain.repositories.SessionRepository
 
 class SessionRepositoryImpl {
     companion object: SessionRepository {

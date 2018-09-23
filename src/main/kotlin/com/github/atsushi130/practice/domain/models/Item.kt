@@ -1,7 +1,7 @@
 package com.github.atsushi130.practice.domain.models
 
 import com.github.atsushi130.practice.data.repositories.ItemRepositoryImpl
-import com.github.atsushi130.practice.domain.repository.ItemRepository
+import com.github.atsushi130.practice.domain.repositories.ItemRepository
 
 data class Item(
     val id: String,

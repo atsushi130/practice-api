@@ -2,7 +2,7 @@ package com.github.atsushi130.practice.data.repositories
 
 import com.github.atsushi130.practice.domain.models.Item
 import com.github.atsushi130.practice.domain.models.User
-import com.github.atsushi130.practice.domain.repository.ItemRepository
+import com.github.atsushi130.practice.domain.repositories.ItemRepository
 import java.util.*
 
 class ItemRepositoryImpl {

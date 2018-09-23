@@ -1,4 +1,4 @@
-package com.github.atsushi130.practice.domain.repository
+package com.github.atsushi130.practice.domain.repositories
 
 import com.github.atsushi130.practice.domain.models.Session
 
