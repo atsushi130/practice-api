@@ -1,6 +1,7 @@
 package com.github.atsushi130.practice.domain.models
 
-import java.util.*
+import com.github.atsushi130.practice.data.repository.ItemRepositoryImpl
+import com.github.atsushi130.practice.domain.repository.ItemRepository
 
 data class Item(
     val id: String,
@@ -10,13 +11,10 @@ data class Item(
 ) {
     companion object {
 
-        fun findBy(id: String): Item? {
-            return Item(id, "1", "name1", "subName1")
-        }
+        private val repository: ItemRepository = ItemRepositoryImpl
 
-        fun findBy(user: User): List<Item> {
-            val item = Item(user.id, "1", "name1", "subName1")
-            return Arrays.asList(item)
-        }
+        fun findBy(id: String): Item? = this.repository.findBy(id)
+
+        fun findBy(user: User): List<Item> = this.repository.findBy(user)
     }
 }
