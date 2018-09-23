@@ -1,4 +1,4 @@
-package com.github.atsushi130.practice.data.repository
+package com.github.atsushi130.practice.data.repositories
 
 import com.github.atsushi130.practice.domain.models.User
 import com.github.atsushi130.practice.domain.repository.UserRepository

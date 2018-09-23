@@ -1,6 +1,6 @@
 package com.github.atsushi130.practice.domain.models
 
-import com.github.atsushi130.practice.data.repository.SessionRepositoryImpl
+import com.github.atsushi130.practice.data.repositories.SessionRepositoryImpl
 
 /**
  * primary key: sessionId

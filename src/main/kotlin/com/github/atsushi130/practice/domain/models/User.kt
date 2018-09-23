@@ -1,6 +1,6 @@
 package com.github.atsushi130.practice.domain.models
 
-import com.github.atsushi130.practice.data.repository.UserRepositoryImpl
+import com.github.atsushi130.practice.data.repositories.UserRepositoryImpl
 
 /**
  * primary key: id

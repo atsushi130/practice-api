@@ -1,6 +1,6 @@
 package com.github.atsushi130.practice.domain.models
 
-import com.github.atsushi130.practice.data.repository.ItemRepositoryImpl
+import com.github.atsushi130.practice.data.repositories.ItemRepositoryImpl
 import com.github.atsushi130.practice.domain.repository.ItemRepository
 
 data class Item(
