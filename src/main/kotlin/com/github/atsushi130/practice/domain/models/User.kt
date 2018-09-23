@@ -1,5 +1,7 @@
 package com.github.atsushi130.practice.domain.models
 
+import com.github.atsushi130.practice.data.repository.UserRepositoryImpl
+
 /**
  * primary key: id
  * user has many items
@@ -10,8 +12,9 @@ data class User(val id: String) {
         get() = Item.findBy(this)
 
     companion object {
-        fun findBy(id: String): User? {
-            return User("1")
-        }
+
+        private val repository = UserRepositoryImpl
+
+        fun findBy(id: String): User? = this.repository.findBy(id)
     }
 }
