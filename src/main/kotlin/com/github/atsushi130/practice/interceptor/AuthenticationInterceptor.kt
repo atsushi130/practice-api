@@ -1,5 +1,10 @@
 package com.github.atsushi130.practice.interceptor
 
+import com.github.atsushi130.practice.domain.models.Session
+import com.github.atsushi130.practice.domain.shared.UserContainer
+import com.github.atsushi130.practice.exception.AuthenticationException
+import com.github.atsushi130.practice.extension.isSessionId
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.context.annotation.ScopedProxyMode
 import org.springframework.stereotype.Component
@@ -14,16 +19,34 @@ import javax.servlet.http.HttpServletResponse
 @Component("appAuthenticationInterceptor")
 class AuthenticationInterceptor: HandlerInterceptor {
 
+    @Autowired
+    private lateinit var userContainer: UserContainer
+
     @Throws(Exception::class)
     override fun afterCompletion(request: HttpServletRequest, response: HttpServletResponse, handler: Any, e: Exception?) {}
 
     @Throws(Exception::class)
     override fun postHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any, view: ModelAndView?) {}
 
-    @Throws(Exception::class)
+    @Throws(AuthenticationException::class)
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
-        // authenticate user using request.cookies.toList()
-        // and register user as bean to spring DI container
+
+        val cookies = request.cookies.toList()
+
+        if (cookies.isEmpty()) {
+            throw AuthenticationException.CookieNotExists()
+        }
+
+        val sessionId = cookies
+            .firstOrNull { it.isSessionId }
+            ?: throw AuthenticationException.SessionIdNotExists()
+
+        val session = Session.findBy(sessionId.value)
+            ?: throw AuthenticationException.InvalidSessionId()
+
+        // set authenticated user to shared user container.
+        this.userContainer.setAuthenticatedUser(session.user)
+
         return true
     }
 }
