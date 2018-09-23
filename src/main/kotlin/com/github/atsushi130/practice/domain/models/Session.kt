@@ -1,19 +1,21 @@
 package com.github.atsushi130.practice.domain.models
 
+import com.github.atsushi130.practice.data.repository.SessionRepositoryImpl
+
 /**
  * primary key: sessionId
  * session has one user
  */
-data class Session(val sessionId: String, val userId: String) {
+data class Session( val id: String, val userId: String) {
 
     val user: User
-       get() = User(this.userId)
+       get() = User.findBy(this.userId)!!
 
     companion object {
 
-        fun findBy(sessionId: String): Session? {
-            return Session(sessionId, "1")
-        }
+        private val repository = SessionRepositoryImpl
+
+        fun findBy(id: String): Session? = this.repository.findBy(id)
 
         fun exists(sessionId: String): Boolean {
             // session find by sessionId from session store.
