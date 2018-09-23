@@ -1,4 +1,4 @@
-package com.github.atsushi130.practice
+package com.github.atsushi130.practice.presentation.items
 
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
