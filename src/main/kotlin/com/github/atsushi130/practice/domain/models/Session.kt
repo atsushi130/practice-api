@@ -15,9 +15,9 @@ data class Session( val id: String, val userId: String) {
 
         private val repository = SessionRepositoryImpl
 
-        fun findBySessionId(id: String): Session? = this.repository.findBy(id)
+        fun findBySessionId(id: String): Session? = this.repository.findBySessionId(id)
 
-        fun findByUserId(id: String): Session? = this.repository.findBy(id)
+        fun findByUserId(id: String): Session? = this.repository.findByUserId(id)
 
         fun exists(sessionId: String): Boolean {
             // session find by sessionId from session store.
