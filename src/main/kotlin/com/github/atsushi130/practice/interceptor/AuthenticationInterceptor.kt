@@ -41,7 +41,7 @@ class AuthenticationInterceptor: HandlerInterceptor {
             .firstOrNull { it.isSessionId }
             ?: throw AuthenticationException.SessionIdNotExists()
 
-        val session = Session.findBy(sessionId.value)
+        val session = Session.findBySessionId(sessionId.value)
             ?: throw AuthenticationException.InvalidSessionId()
 
         // set authenticated user to shared user container.
