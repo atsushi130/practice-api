@@ -15,14 +15,16 @@ import java.lang.Exception
 @RestController
 @RequestScope
 @Component
-class AccountController {
+class LoginController {
 
     @Autowired
     private lateinit var presenter: AccountPresenter
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/account/create", method = [POST])
-    fun create(@RequestBody account: AccountResource) = this.presenter.create(account)
+    fun createAccount(@RequestBody account: AccountResource) = this.presenter.create(account)
+
+    fun
 
     @ExceptionHandler(Exception::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

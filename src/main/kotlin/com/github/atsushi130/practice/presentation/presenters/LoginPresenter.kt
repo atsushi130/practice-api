@@ -13,7 +13,7 @@ class AccountPresenter {
     private lateinit var createAccountUseCase: CreateAccountUseCase
 
     @Throws(AccountException::class)
-    fun create(account: AccountResource) {
+    fun signUp(account: AccountResource) {
         val model = account.toModel()
         this.createAccountUseCase.execute(model)
     }
