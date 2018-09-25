@@ -17,7 +17,9 @@ import org.springframework.web.servlet.handler.MappedInterceptor
             "com.github.atsushi130.practice.presentation",
             "com.github.atsushi130.practice.domain",
             "com.github.atsushi130.practice.data",
-            "com.github.atsushi130.practice.interceptor"
+            "com.github.atsushi130.practice.interceptor",
+            "com.github.atsushi130.practice.exception",
+            "com.github.atsushi130.practice.extension"
         ]
 )
 class ApplicationConfiguration: WebMvcConfigurer {
