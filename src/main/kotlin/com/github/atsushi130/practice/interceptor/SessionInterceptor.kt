@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse
 
 @RequestScope
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
-@Component("appAuthenticationInterceptor")
-class AuthenticationInterceptor: HandlerInterceptor {
+@Component("sessionInterceptor")
+class SessionInterceptor: HandlerInterceptor {
 
     @Autowired
     private lateinit var userContainer: UserContainer
