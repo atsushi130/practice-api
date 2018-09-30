@@ -25,8 +25,15 @@ import org.springframework.web.servlet.handler.MappedInterceptor
 class ApplicationConfiguration: WebMvcConfigurer {
 
     @Autowired
-    @Qualifier("sessionInterceptor")
+    @Qualifier("appAuthenticationInterceptor")
+    private lateinit var authenticationInterceptor: HandlerInterceptor
+
+    @Autowired
+    @Qualifier("appSessionInterceptor")
     private lateinit var sessionInterceptor: HandlerInterceptor
+
+    @Bean
+    fun authenticationInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.authenticationInterceptor)
 
     @Bean
     fun sessionInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.sessionInterceptor)
