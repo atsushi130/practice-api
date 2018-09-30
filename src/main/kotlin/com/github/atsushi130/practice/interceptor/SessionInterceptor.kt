@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse
 
 @RequestScope
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
-@Component("sessionInterceptor")
+@Component("appSessionInterceptor")
 class SessionInterceptor: HandlerInterceptor {
 
     @Autowired
