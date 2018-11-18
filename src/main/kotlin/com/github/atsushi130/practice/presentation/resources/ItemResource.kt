@@ -14,9 +14,10 @@ data class ItemResource(
         fun from(model: Item): ItemResource = ItemResource(model.id, model.name, model.subName)
 
         fun from(models: List<Item>): List<ItemResource> {
-            return models.map {
-                ItemResource.from(it)
-            }
+            return models
+                .map {
+                    ItemResource.from(it)
+                }
         }
     }
 }
