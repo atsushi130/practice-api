@@ -16,5 +16,7 @@ data class User(val id: String) {
         private val repository = UserRepositoryImpl
 
         fun findBy(id: String): User? = this.repository.findBy(id)
+
+        fun findFunsBy(itemId: String): List<User> = this.repository.findFunsBy(itemId)
     }
 }
