@@ -22,10 +22,11 @@ import org.springframework.web.servlet.handler.MappedInterceptor
             "com.github.atsushi130.practice.extension"
         ]
 )
+@Suppress("unused")
 class ApplicationConfiguration: WebMvcConfigurer {
 
     @Autowired
-    @Qualifier("sessionInterceptor")
+    @Qualifier("appSessionInterceptor")
     private lateinit var sessionInterceptor: HandlerInterceptor
 
     @Bean
