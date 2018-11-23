@@ -18,6 +18,10 @@ class UserController {
     private lateinit var presenter: UserPresenter
 
     @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/user", method = [GET])
+    fun getUser(): UserResource = this.presenter.getUser()
+
+    @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/item_funs/{itemId}", method = [GET])
     fun findFuns(@PathVariable("itemId") itemId: String): List<UserResource> = this.presenter.findFunsBy(itemId)
 }
