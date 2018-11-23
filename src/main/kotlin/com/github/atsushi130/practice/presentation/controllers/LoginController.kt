@@ -23,11 +23,11 @@ class LoginController {
     private lateinit var presenter: LoginPresenter
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/sign_up", method = [POST])
+    @RequestMapping(value = ["/sign_up"], method = [POST])
     fun signUp(@RequestBody account: AccountResource): LoginResource = this.presenter.signUp(account)
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/sign_in", method = [POST])
+    @RequestMapping(value = ["/sign_in"], method = [POST])
     fun signIn(@RequestBody account: AccountResource): LoginResource = this.presenter.signIn(account)
 
     @ExceptionHandler(Exception::class)

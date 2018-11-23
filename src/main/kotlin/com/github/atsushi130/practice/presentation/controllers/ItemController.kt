@@ -21,6 +21,6 @@ class ItemController {
     private lateinit var presenter: ItemPresenter
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/items", method = [GET])
+    @RequestMapping(value = ["/items"], method = [GET])
     fun getItems(): List<ItemResource> = this.presenter.getItems()
 }
