@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod.GET
 @RestController
 @RequestScope
 @Component
+@Suppress("unused")
 class UserController {
 
     @Autowired

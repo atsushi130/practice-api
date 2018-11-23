@@ -16,6 +16,7 @@ import java.lang.Exception
 @RestController
 @RequestScope
 @Component
+@Suppress("unused")
 class LoginController {
 
     @Autowired

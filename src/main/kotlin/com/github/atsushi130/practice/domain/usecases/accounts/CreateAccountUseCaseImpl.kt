@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service
 import javax.security.auth.login.AccountException
 
 @Service
+@Suppress("unused")
 class CreateAccountUseCaseImpl: CreateAccountUseCase {
 
     @Throws(AccountException::class)

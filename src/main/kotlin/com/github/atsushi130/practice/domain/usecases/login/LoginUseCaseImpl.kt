@@ -6,6 +6,7 @@ import com.github.atsushi130.practice.exception.LoginException
 import org.springframework.stereotype.Service
 
 @Service
+@Suppress("unused")
 class LoginUseCaseImpl: LoginUseCase {
 
     @Throws(LoginException::class)
