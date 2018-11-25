@@ -23,4 +23,8 @@ class ItemController {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = ["/items"], method = [GET])
     fun getItems(): List<ItemResource> = this.presenter.getItems()
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = ["/latest_items"], method = [GET])
+    fun getLatestItems(): List<ItemResource> = this.presenter.getLatestItems()
 }
