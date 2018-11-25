@@ -6,9 +6,13 @@ import org.springframework.stereotype.Component
 @Component
 class UserContainer {
 
-    final lateinit var user: User private set
+    // MEMO: want to change private set, but can not modify final.
+    val user: User
+        get() = this.authenticatedUser
+
+    private lateinit var authenticatedUser: User
 
     fun setAuthenticatedUser(user: User) {
-        this.user = user
+        this.authenticatedUser = user
     }
 }
