@@ -1,6 +1,7 @@
 package com.github.atsushi130.practice.data.repositories
 
 import com.github.atsushi130.practice.domain.models.Item
+import com.github.atsushi130.practice.domain.models.Reaction
 import com.github.atsushi130.practice.domain.models.User
 import com.github.atsushi130.practice.domain.repositories.ItemRepository
 import java.util.*
@@ -9,19 +10,29 @@ class ItemRepositoryImpl {
     companion object: ItemRepository {
 
         override fun findBy(id: String): Item? {
-            return Item(id, "1", "name", "subName")
+            val registeredUser = User("atsushi130")
+            val latestReactionUser = User("tester1")
+            val wants = Reaction(true, 5)
+            val haves = Reaction(false, 5)
+            return Item("1", "NOMOS", "NOMOS Metro wristwatch", registeredUser, latestReactionUser, wants, haves)
         }
 
         override fun findBy(user: User): List<Item> {
+            val registeredUser1 = User("atsushi130")
+            val registeredUser2 = User("tester1")
+            val registeredUser3 = User("tester2")
+            val latestReactionUser = User("tester1")
+            val wants = Reaction(true, 5)
+            val haves = Reaction(false, 5)
             return Arrays
                 .asList(
-                    Item("1", "F2940B42-20AC-4F74-918F-479FCD547FF5", "name1", "subName1"),
-                    Item("2", "DC024697-443B-4182-8CBD-8837ACBF7E23", "name2", "subName2"),
-                    Item("3", "7DDB6B1C-57F7-489A-95FF-2FC7AF12C046", "name3", "subName3"),
-                    Item("4", "F2940B42-20AC-4F74-918F-479FCD547FF5", "name4", "subName4")
+                    Item("1", "NOMOS", "NOMOS Metro wristwatch", registeredUser1, latestReactionUser, wants, haves),
+                    Item("2", "NOMOS", "NOMOS Metro wristwatch", registeredUser2, latestReactionUser, wants, haves),
+                    Item("3", "NOMOS", "NOMOS Metro wristwatch", registeredUser3, latestReactionUser, wants, haves),
+                    Item("4", "NOMOS", "NOMOS Metro wristwatch", registeredUser1, latestReactionUser, wants, haves)
                 )
                 .filter {
-                    it.userId == user.id
+                    it.registeredUser.id == user.id
                 }
         }
     }
