@@ -4,4 +4,5 @@ import com.github.atsushi130.practice.presentation.resources.ItemResource
 
 interface ItemPresenter {
     fun getItems(): List<ItemResource>
+    fun getLatestItems(): List<ItemResource>
 }
