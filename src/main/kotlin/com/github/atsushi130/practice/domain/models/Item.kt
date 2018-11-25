@@ -19,5 +19,7 @@ data class Item(
         fun findBy(id: String): Item? = this.repository.findBy(id)
 
         fun findBy(user: User): List<Item> = this.repository.findBy(user)
+
+        fun getLatest(): List<Item> = this.repository.getLatestItems()
     }
 }
