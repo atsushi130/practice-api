@@ -35,5 +35,19 @@ class ItemRepositoryImpl {
                     it.registeredUser.id == user.id
                 }
         }
+
+        override fun getLatestItems(): List<Item> {
+            val registeredUser = User("atsushi130")
+            val latestReactionUser = User("tester1")
+            val wants = Reaction(true, 5)
+            val haves = Reaction(false, 5)
+            return Arrays
+                .asList(
+                    Item("1", "NOMOS", "NOMOS Metro wristwatch", registeredUser, latestReactionUser, wants, haves),
+                    Item("2", "NOMOS", "NOMOS Metro wristwatch", registeredUser, latestReactionUser, wants, haves),
+                    Item("3", "NOMOS", "NOMOS Metro wristwatch", registeredUser, latestReactionUser, wants, haves),
+                    Item("4", "NOMOS", "NOMOS Metro wristwatch", registeredUser, latestReactionUser, wants, haves)
+                )
+        }
     }
 }
