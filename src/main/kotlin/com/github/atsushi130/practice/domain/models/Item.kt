@@ -5,9 +5,12 @@ import com.github.atsushi130.practice.domain.repositories.ItemRepository
 
 data class Item(
     val id: String,
-    val userId: String,
     val name: String,
-    val subName: String
+    val subName: String,
+    val registeredUser: User,
+    val latestReactionUser: User?,
+    val wants: Reaction,
+    val haves: Reaction
 ) {
     companion object {
 
