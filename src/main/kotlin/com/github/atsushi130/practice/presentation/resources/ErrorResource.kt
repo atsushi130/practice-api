@@ -6,7 +6,7 @@ import java.lang.Exception
 data class ErrorResource(val code: Int, val message: String) {
     companion object {
 
-        fun from(exception: PracticeException): ErrorResource = ErrorResource(exception.code, exception.message)
+        fun from(exception: PracticeException): ErrorResource = ErrorResource(exception.code.value, exception.message)
 
         fun from(exception: Exception): ErrorResource = ErrorResource(0, exception.message ?: "")
     }
