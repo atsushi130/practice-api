@@ -45,7 +45,7 @@ interface AppVersion: Version {
 data class iOSAppVersion(override val version: String): AppVersion {
     override val recommended: iOSAppVersion
         get() = iOSAppVersion("1.0.0")
-    override val required: AppVersion
+    override val required: iOSAppVersion
         get() = iOSAppVersion("1.0.0")
 }
 
