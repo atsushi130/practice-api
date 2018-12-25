@@ -18,6 +18,7 @@ import org.springframework.web.servlet.handler.MappedInterceptor
             "com.github.atsushi130.practice.domain",
             "com.github.atsushi130.practice.data",
             "com.github.atsushi130.practice.interceptor",
+            "com.github.atsushi130.practice.controllerAdvice",
             "com.github.atsushi130.practice.exception",
             "com.github.atsushi130.practice.extension"
         ]
@@ -25,10 +26,20 @@ import org.springframework.web.servlet.handler.MappedInterceptor
 @Suppress("unused")
 class ApplicationConfiguration: WebMvcConfigurer {
 
+    /**
+     * Priority of interceptor in order from the top.
+     */
     @Autowired
     @Qualifier("appSessionInterceptor")
     private lateinit var sessionInterceptor: HandlerInterceptor
 
+    @Autowired
+    @Qualifier("userStateInterceptor")
+    private lateinit var userStateInterceptor: HandlerInterceptor
+
     @Bean
     fun sessionInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.sessionInterceptor)
+
+    @Bean
+    fun userStateInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.userStateInterceptor)
 }
