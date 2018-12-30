@@ -30,7 +30,7 @@ class ApplicationConfiguration: WebMvcConfigurer {
      * Priority of interceptor in order from the top.
      */
     @Autowired
-    @Qualifier("appSessionInterceptor")
+    @Qualifier("sessionInterceptor")
     private lateinit var sessionInterceptor: HandlerInterceptor
 
     @Autowired
@@ -38,7 +38,7 @@ class ApplicationConfiguration: WebMvcConfigurer {
     private lateinit var userStateInterceptor: HandlerInterceptor
 
     @Bean
-    fun sessionInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.sessionInterceptor)
+    fun sessionMappedInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.sessionInterceptor)
 
     @Bean
     fun userStateMappedInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.userStateInterceptor)
