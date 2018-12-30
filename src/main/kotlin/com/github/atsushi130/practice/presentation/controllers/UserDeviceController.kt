@@ -22,6 +22,6 @@ class UserDeviceController {
     private lateinit var presenter: UserDevicePresenter
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = ["/sign_up"], method = [POST])
+    @RequestMapping(value = ["/user_devices"], method = [POST])
     fun updateUserDevice(@RequestBody userDevice: UserDeviceResource) = this.presenter.updateUserDevice(userDevice)
 }
