@@ -41,5 +41,5 @@ class ApplicationConfiguration: WebMvcConfigurer {
     fun sessionInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.sessionInterceptor)
 
     @Bean
-    fun userStateInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.userStateInterceptor)
+    fun userStateMappedInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.userStateInterceptor)
 }
