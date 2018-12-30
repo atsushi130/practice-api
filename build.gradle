@@ -49,6 +49,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
     compile("org.springframework.boot:spring-boot-starter-data-rest")
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	compile 'org.jetbrains.exposed:exposed'
 	compile("org.jetbrains.kotlin:kotlin-reflect")
     compile("aspectj:aspectjweaver:1.5.4")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
