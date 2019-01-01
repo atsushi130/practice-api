@@ -1,5 +1,8 @@
 package com.github.atsushi130.practice
 
+import com.github.atsushi130.practice.data.tables.SessionEntity
+import com.github.atsushi130.practice.data.tables.Sessions
+import com.github.atsushi130.practice.data.tables.UserEntity
 import com.github.atsushi130.practice.data.tables.Users
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -14,10 +17,12 @@ class PracticeApplication {
         @JvmStatic fun main(vararg args: String) {
             SpringApplication.run(PracticeApplication::class.java, *args)
             transaction {
-                Users.selectAll()
-                    .forEach { record ->
-                        print(record[Users.id])
-                        print(record[Users.name])
+                SessionEntity
+                    .find {
+                        Sessions.id eq "5755BECA-1A85-4714-AF0C-4ECE06E5BE16"
+                    }
+                    .forEach {
+                        println(it.user.id.value)
                     }
             }
         }
