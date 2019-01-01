@@ -16,7 +16,7 @@ class UserDeviceRepositoryImpl {
         override fun findBy(userId: String): UserDevice? {
             val osVersion = OSVersion("12.0.0")
             val appVersion = iOSAppVersion("1.0.0")
-            return UserDevice(userId, osVersion, appVersion)
+            return UserDevice(1, userId, osVersion, appVersion)
         }
 
         override fun update(userDevice: UserDevice) {
