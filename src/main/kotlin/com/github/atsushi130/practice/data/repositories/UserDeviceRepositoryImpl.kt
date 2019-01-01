@@ -1,25 +1,20 @@
 package com.github.atsushi130.practice.data.repositories
 
+import com.github.atsushi130.practice.data.entities.UserDeviceEntity
+import com.github.atsushi130.practice.data.tables.UserDevices
 import com.github.atsushi130.practice.domain.models.*
 import com.github.atsushi130.practice.domain.repositories.UserDeviceRepository
+import org.springframework.stereotype.Repository
 
-/**
- * Schema
- * userId: Int
- * osType: String
- * osVersion: String
- * appVersion: String
- */
-class UserDeviceRepositoryImpl {
-    companion object: UserDeviceRepository {
+@Repository
+class UserDeviceRepositoryImpl: UserDeviceRepository {
 
-        override fun findBy(userId: String): UserDevice? {
-            val osVersion = OSVersion("12.0.0")
-            val appVersion = iOSAppVersion("1.0.0")
-            return UserDevice(1, userId, osVersion, appVersion)
-        }
+    override fun findBy(userId: String): List<UserDevice> {
+        return UserDeviceEntity
+            .find { UserDevices.userId eq userId }
+            .map { it.toModel() }
+    }
 
-        override fun update(userDevice: UserDevice) {
-        }
+    override fun update(userDevice: UserDevice) {
     }
 }
