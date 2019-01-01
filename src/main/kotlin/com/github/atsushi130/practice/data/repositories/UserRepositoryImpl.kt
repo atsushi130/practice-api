@@ -1,19 +1,26 @@
 package com.github.atsushi130.practice.data.repositories
 
+import com.github.atsushi130.practice.data.dataAccessObjects.UserDao
 import com.github.atsushi130.practice.domain.models.User
 import com.github.atsushi130.practice.domain.repositories.UserRepository
-import java.util.*
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Repository
 
-class UserRepositoryImpl {
-    companion object: UserRepository {
+@Repository
+class UserRepositoryImpl: UserRepository {
 
-        override fun findBy(id: String): User? {
-            if (id == "atsushi130") {
-                return User(id)
-            }
-            return null
+    @Autowired
+    private lateinit var dao: UserDao
+
+    override fun findBy(id: String): User? {
+        return this.dao.findBy(id)?.let {
+            it.toModel()
         }
-
-        override fun findFunsBy(itemId: String): List<User> = Arrays.asList()
     }
+
+    override fun findFunsBy(itemId: Int): List<User> {
+        return this.dao.findFunsBy(itemId)
+            .map { it.toModel() }
+    }
+
 }
