@@ -12,14 +12,14 @@ class SessionRepositoryImpl: SessionRepository {
     override fun findBySessionId(id: String): Session? {
         return SessionEntity
             .find { Sessions.id eq id }
-            .firstOrNull()
+            .singleOrNull()
             ?.toModel()
     }
 
     override fun findByUserId(userId: String): Session? {
         return SessionEntity
             .find { Sessions.userId eq userId }
-            .firstOrNull()
+            .singleOrNull()
             ?.toModel()
     }
 }
