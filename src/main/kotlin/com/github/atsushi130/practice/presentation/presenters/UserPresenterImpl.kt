@@ -21,5 +21,5 @@ class UserPresenterImpl: UserPresenter {
     override fun getUser(): UserResource = UserResource.from(this.userContainer.user)
 
 
-    override fun findFunsBy(itemId: String): List<UserResource> = this.useCase.findFunsBy(itemId).map(::from)
+    override fun findFunsBy(itemId: Int): List<UserResource> = this.useCase.findFunsBy(itemId).map(::from)
 }
