@@ -19,6 +19,8 @@ class UserEntity(id: EntityID<String>): Entity<String>(id) {
         }
 
     fun toModel(): User {
-        return User(this.id.value)
+        val userDevices = this.userDevices
+            .map { it.toModel() }
+        return User(this.id.value, userDevices)
     }
 }
