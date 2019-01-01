@@ -1,22 +1,25 @@
 package com.github.atsushi130.practice.data.repositories
 
+import com.github.atsushi130.practice.data.tables.SessionEntity
+import com.github.atsushi130.practice.data.tables.Sessions
 import com.github.atsushi130.practice.domain.models.Session
 import com.github.atsushi130.practice.domain.repositories.SessionRepository
+import org.springframework.stereotype.Repository
 
-class SessionRepositoryImpl {
-    companion object: SessionRepository {
-        override fun findBySessionId(id: String): Session? {
-            if (id == "5755BECA-1A85-4714-AF0C-4ECE06E5BE16") {
-                return Session(id, "atsushi130")
-            }
-            return null
-        }
+@Repository
+class SessionRepositoryImpl: SessionRepository {
 
-        override fun findByUserId(id: String): Session? {
-            if (id == "atsushi130") {
-                return Session("5755BECA-1A85-4714-AF0C-4ECE06E5BE16", id)
-            }
-            return null
-        }
+    override fun findBySessionId(id: String): Session? {
+        return SessionEntity
+            .find { Sessions.id eq id }
+            .firstOrNull()
+            ?.toModel()
+    }
+
+    override fun findByUserId(userId: String): Session? {
+        return SessionEntity
+            .find { Sessions.userId eq userId }
+            .firstOrNull()
+            ?.toModel()
     }
 }
