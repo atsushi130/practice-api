@@ -1,4 +1,4 @@
-package com.github.atsushi130.practice.data.tables
+package com.github.atsushi130.practice.data.dataAccessObjects
 
 import com.github.atsushi130.practice.domain.models.Session
 import org.jetbrains.exposed.dao.Entity

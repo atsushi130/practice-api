@@ -1,6 +1,7 @@
 package com.github.atsushi130.practice.configuration
 
-import com.github.atsushi130.practice.data.tables.*
+import com.github.atsushi130.practice.data.dataAccessObjects.Sessions
+import com.github.atsushi130.practice.data.dataAccessObjects.Users
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.transaction.annotation.TransactionManagementConfigurer

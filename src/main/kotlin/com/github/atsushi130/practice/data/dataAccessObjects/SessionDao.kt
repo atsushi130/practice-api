@@ -1,7 +1,5 @@
 package com.github.atsushi130.practice.data.dataAccessObjects
 
-import com.github.atsushi130.practice.data.tables.SessionEntity
-import com.github.atsushi130.practice.data.tables.Sessions
 import org.springframework.stereotype.Component
 
 @Component
