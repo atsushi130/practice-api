@@ -1,7 +1,6 @@
 package com.github.atsushi130.practice.configuration
 
-import com.github.atsushi130.practice.data.tables.Sessions
-import com.github.atsushi130.practice.data.tables.Users
+import com.github.atsushi130.practice.data.tables.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.transaction.annotation.TransactionManagementConfigurer
@@ -28,7 +27,7 @@ class DatabaseConfiguration(@Autowired val dataSource: DataSource): TransactionM
 
     private fun createTablesIfNeeded() {
         transaction {
-            create(Users, Sessions)
+            create(Users, Sessions, UserDevices)
         }
     }
 
