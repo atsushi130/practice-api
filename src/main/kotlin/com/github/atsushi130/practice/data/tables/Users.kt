@@ -1,4 +1,4 @@
-package com.github.atsushi130.practice.data.tables
+package com.github.atsushi130.practice.data.entities
 
 import org.jetbrains.exposed.sql.Table
 
