@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired
 data class User(val id: String, val userDevices: List<UserDevice>) {
 
     val items: List<Item>
-        get() = Item.findBy(this)
+        get() = Item.findBy(this.id)
 
     val isBanned: Boolean = false
 }
