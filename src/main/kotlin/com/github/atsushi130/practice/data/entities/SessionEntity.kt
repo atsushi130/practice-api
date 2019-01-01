@@ -9,7 +9,7 @@ import org.jetbrains.exposed.dao.EntityID
 class SessionEntity(id: EntityID<String>): Entity<String>(id) {
 
     companion object: EntityClass<String, SessionEntity>(Sessions)
-    var user by UserEntity referencedOn Sessions.userId
+    private val user by UserEntity referencedOn Sessions.userId
 
     fun toModel(): Session {
         val user = this.user.toModel()
