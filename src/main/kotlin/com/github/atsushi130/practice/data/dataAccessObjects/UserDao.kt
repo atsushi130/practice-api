@@ -1,5 +1,6 @@
 package com.github.atsushi130.practice.data.dataAccessObjects
 
+import com.github.atsushi130.practice.data.entities.UserEntity
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.stereotype.Component
 
