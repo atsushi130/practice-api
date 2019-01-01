@@ -1,4 +1,4 @@
-package com.github.atsushi130.practice.data.dataAccessObjects
+package com.github.atsushi130.practice.data.tables
 
 import org.jetbrains.exposed.dao.IdTable
 

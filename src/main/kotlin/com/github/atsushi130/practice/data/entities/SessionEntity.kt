@@ -1,6 +1,6 @@
 package com.github.atsushi130.practice.data.entities
 
-import com.github.atsushi130.practice.data.dataAccessObjects.Sessions
+import com.github.atsushi130.practice.data.tables.Sessions
 import com.github.atsushi130.practice.domain.models.Session
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.EntityClass
