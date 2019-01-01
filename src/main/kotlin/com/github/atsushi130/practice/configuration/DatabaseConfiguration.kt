@@ -14,7 +14,7 @@ import javax.sql.DataSource
 
 @Configuration
 @EnableTransactionManagement
-class DataBaseConfiguration(@Autowired val dataSource: DataSource): TransactionManagementConfigurer {
+class DatabaseConfiguration(@Autowired val dataSource: DataSource): TransactionManagementConfigurer {
 
     init {
         this.connectDatabase()
