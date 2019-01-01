@@ -10,18 +10,18 @@ class ItemRepositoryImpl {
     companion object: ItemRepository {
 
         override fun findBy(id: String): Item? {
-            val registeredUser = User("atsushi130")
-            val latestReactionUser = User("tester1")
+            val registeredUser = User("atsushi130", emptyList())
+            val latestReactionUser = User("tester1", emptyList())
             val wants = Reaction(true, 5)
             val haves = Reaction(false, 5)
             return Item("1", "NOMOS", "NOMOS Metro wristwatch", registeredUser, latestReactionUser, wants, haves)
         }
 
         override fun findBy(user: User): List<Item> {
-            val registeredUser1 = User("atsushi130")
-            val registeredUser2 = User("tester1")
-            val registeredUser3 = User("tester2")
-            val latestReactionUser = User("tester1")
+            val registeredUser1 = User("atsushi130", emptyList())
+            val registeredUser2 = User("tester1", emptyList())
+            val registeredUser3 = User("tester2", emptyList())
+            val latestReactionUser = User("tester1", emptyList())
             val wants = Reaction(true, 5)
             val haves = Reaction(false, 5)
             return Arrays
@@ -37,8 +37,8 @@ class ItemRepositoryImpl {
         }
 
         override fun getLatestItems(): List<Item> {
-            val registeredUser = User("atsushi130")
-            val latestReactionUser = User("tester1")
+            val registeredUser = User("atsushi130", emptyList())
+            val latestReactionUser = User("tester1", emptyList())
             val wants = Reaction(true, 5)
             val haves = Reaction(false, 5)
             return Arrays
