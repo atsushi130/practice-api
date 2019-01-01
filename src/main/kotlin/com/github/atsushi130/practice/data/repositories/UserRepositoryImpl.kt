@@ -1,6 +1,5 @@
 package com.github.atsushi130.practice.data.repositories
 
-import com.github.atsushi130.practice.data.dataAccessObjects.UserDao
 import com.github.atsushi130.practice.data.dataAccessObjects.Users
 import com.github.atsushi130.practice.data.entities.UserEntity
 import com.github.atsushi130.practice.domain.models.User
@@ -11,9 +10,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class UserRepositoryImpl: UserRepository {
-
-    @Autowired
-    private lateinit var dao: UserDao
 
     override fun findBy(id: String): User? {
         return transaction {
