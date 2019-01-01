@@ -24,5 +24,5 @@ class UserController {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = ["/item_funs/{itemId}"], method = [GET])
-    fun findFuns(@PathVariable("itemId") itemId: String): List<UserResource> = this.presenter.findFunsBy(itemId)
+    fun findFuns(@PathVariable("itemId") itemId: Int): List<UserResource> = this.presenter.findFunsBy(itemId)
 }
