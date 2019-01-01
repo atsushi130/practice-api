@@ -27,7 +27,7 @@ class DatabaseConfiguration(@Autowired val dataSource: DataSource): TransactionM
 
     private fun createTablesIfNeeded() {
         transaction {
-            create(Users, Sessions, UserDevices)
+            create(Users, Sessions, UserDevices, Items, ItemReactions)
         }
     }
 
