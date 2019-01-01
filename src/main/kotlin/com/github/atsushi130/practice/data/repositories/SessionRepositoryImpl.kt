@@ -7,6 +7,7 @@ import com.github.atsushi130.practice.domain.repositories.SessionRepository
 import org.springframework.stereotype.Repository
 
 @Repository
+@Suppress("unused")
 class SessionRepositoryImpl: SessionRepository {
 
     override fun findBySessionId(id: String): Session? {

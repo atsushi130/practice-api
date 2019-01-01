@@ -7,6 +7,7 @@ import com.github.atsushi130.practice.domain.repositories.UserDeviceRepository
 import org.springframework.stereotype.Repository
 
 @Repository
+@Suppress("unused")
 class UserDeviceRepositoryImpl: UserDeviceRepository {
 
     override fun findBy(userId: String): List<UserDevice> {

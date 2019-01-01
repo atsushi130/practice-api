@@ -8,6 +8,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.stereotype.Repository
 
 @Repository
+@Suppress("unused")
 class UserRepositoryImpl: UserRepository {
 
     override fun findBy(id: String): User? {

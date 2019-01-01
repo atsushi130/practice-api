@@ -7,6 +7,7 @@ import com.github.atsushi130.practice.domain.repositories.ItemRepository
 import org.springframework.stereotype.Repository
 
 @Repository
+@Suppress("unused")
 class ItemRepositoryImpl: ItemRepository {
 
     override fun findBy(id: Int): Item? {
