@@ -4,5 +4,5 @@ import com.github.atsushi130.practice.presentation.resources.UserResource
 
 interface UserPresenter {
     fun getUser(): UserResource
-    fun findFunsBy(itemId: String): List<UserResource>
+    fun findFunsBy(itemId: Int): List<UserResource>
 }
