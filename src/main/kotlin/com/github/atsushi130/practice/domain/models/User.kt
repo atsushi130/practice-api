@@ -8,13 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired
  * primary key: id
  * user has many items
  */
-data class User(val id: String) {
+data class User(val id: String, val userDevices: List<UserDevice>) {
 
     val items: List<Item>
         get() = Item.findBy(this)
-
-    val userDevice: UserDevice
-        get() = UserDevice.findBy(this.id) ?: throw UserException.UserDeviceNotExists()
 
     val isBanned: Boolean = false
 }
