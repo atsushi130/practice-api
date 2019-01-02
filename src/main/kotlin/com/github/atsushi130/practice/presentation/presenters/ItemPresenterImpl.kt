@@ -17,7 +17,7 @@ class ItemPresenterImpl: ItemPresenter {
     @Autowired
     private lateinit var useCase: ItemUseCase
 
-    override fun getItems(): List<ItemResource> = this.userContainer.user.items.map(::from)
+    override fun getItems(): List<ItemResource> = this.useCase.getItems().map(::from)
 
     override fun getLatestItems(): List<ItemResource> = this.useCase.getLatestItems().map(::from)
 }

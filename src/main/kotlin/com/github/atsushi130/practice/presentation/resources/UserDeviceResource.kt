@@ -4,7 +4,7 @@ import com.github.atsushi130.practice.domain.models.*
 import com.github.atsushi130.practice.exception.UserDeviceException
 import java.io.Serializable
 
-data class UserDeviceResource(val userId: String, val osType: String, val osVersion: String, val appVersion: String): Serializable {
+data class UserDeviceResource(val id: Int, val userId: String, val osType: String, val osVersion: String, val appVersion: String): Serializable {
 
     @Throws(UserDeviceException::class)
     fun toModel(): UserDevice {
@@ -19,6 +19,6 @@ data class UserDeviceResource(val userId: String, val osType: String, val osVers
             OS.iOS -> iOSAppVersion(this.appVersion)
             OS.Android -> AndroidAppVersion(this.appVersion)
         }
-        return UserDevice(this.userId, OSVersion(this.osVersion), appVersion)
+        return UserDevice(this.id, this.userId, OSVersion(this.osVersion), appVersion)
     }
 }

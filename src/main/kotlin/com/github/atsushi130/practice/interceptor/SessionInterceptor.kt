@@ -1,6 +1,7 @@
 package com.github.atsushi130.practice.interceptor
 
 import com.github.atsushi130.practice.domain.models.Session
+import com.github.atsushi130.practice.domain.repositories.SessionRepository
 import com.github.atsushi130.practice.domain.shared.UserContainer
 import com.github.atsushi130.practice.exception.AuthenticationException
 import com.github.atsushi130.practice.extension.isSessionId
@@ -23,6 +24,9 @@ class SessionInterceptor: HandlerInterceptor {
     @Autowired
     private lateinit var userContainer: UserContainer
 
+    @Autowired
+    private lateinit var sessionRepository: SessionRepository
+
     @Throws(Exception::class)
     override fun afterCompletion(request: HttpServletRequest, response: HttpServletResponse, handler: Any, e: Exception?) {}
 
@@ -42,7 +46,7 @@ class SessionInterceptor: HandlerInterceptor {
             .firstOrNull { it.isSessionId }
             ?: throw AuthenticationException.SessionIdNotExists()
 
-        val session = Session.findBySessionId(sessionId.value)
+        val session = this.sessionRepository.findBySessionId(sessionId.value)
             ?: throw AuthenticationException.InvalidSessionId()
 
         // set authenticated user to shared user container.

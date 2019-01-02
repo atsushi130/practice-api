@@ -31,7 +31,8 @@ class UserStateInterceptor: HandlerInterceptor {
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
         val user = this.userContainer.user
         if (user.isBanned) throw UserStateException.Banned()
-        if (!user.userDevice.appVersion.meetsRequiredVersion) throw UserStateException.DoesNotMeetsRequiredVersion()
+        // FIXME: user appVersion on request header
+        if (!user.userDevices.first().appVersion.meetsRequiredVersion) throw UserStateException.DoesNotMeetsRequiredVersion()
         return true
     }
 }
