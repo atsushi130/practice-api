@@ -1,4 +1,4 @@
-package com.github.atsushi130.practice.controllerAdvice
+package com.github.atsushi130.practice.controllerAdviser
 
 import com.github.atsushi130.practice.exception.AuthenticationException
 import com.github.atsushi130.practice.exception.UserStateException
