@@ -3,6 +3,7 @@ buildscript {
         kotlinVersion = '1.2.70'
         springBootVersion = '2.1.0.M3'
         exposedVersion = '0.10.2'
+        postgresqlVersion = '42.2.5'
     }
     repositories {
         mavenCentral()
@@ -13,7 +14,9 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}")
+        classpath("org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}")
         classpath("org.jetbrains.exposed:exposed:${exposedVersion}")
+        classpath("org.postgresql:postgresql:${postgresqlVersion}")
         classpath("org.jetbrains.exposed:spring-transaction:${exposedVersion}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
