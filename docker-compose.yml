@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:9.6
+    ports:
+      - "5432:5432"
+    tty: true
+    user: root
+    volumes:
+      - ./queries:/docker-entrypoint-initdb.d
+      - db:/var/lib/postgresql/data
+  api:
+    build: .
+    volumes:
+      - .:/usr/local/src/practice_api
+    environment:
+      PGHOST: db
+      PGUSER: postgres
+    tty: true
+    stdin_open: true
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    links:
+      - db
+volumes:
+  db:
+    external: false
