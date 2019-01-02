@@ -29,6 +29,10 @@ class ItemRepositoryImpl: ItemRepository {
     }
 
     override fun getLatestItems(): List<Item> {
-        return emptyList()
+        return transaction {
+            ItemEntity
+                .all()
+                .map { it.toModel() }
+        }
     }
 }
