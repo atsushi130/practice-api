@@ -4,6 +4,7 @@ import com.github.atsushi130.practice.data.tables.Sessions
 import com.github.atsushi130.practice.data.entities.SessionEntity
 import com.github.atsushi130.practice.domain.models.Session
 import com.github.atsushi130.practice.domain.repositories.SessionRepository
+import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -11,16 +12,20 @@ import org.springframework.stereotype.Repository
 class SessionRepositoryImpl: SessionRepository {
 
     override fun findBySessionId(id: String): Session? {
-        return SessionEntity
-            .find { Sessions.id eq id }
-            .singleOrNull()
-            ?.toModel()
+        return transaction {
+            SessionEntity
+                .find { Sessions.id eq id }
+                .singleOrNull()
+                ?.toModel()
+        }
     }
 
     override fun findByUserId(userId: String): Session? {
-        return SessionEntity
-            .find { Sessions.userId eq userId }
-            .singleOrNull()
-            ?.toModel()
+        return transaction {
+            SessionEntity
+                .find { Sessions.userId eq userId }
+                .singleOrNull()
+                ?.toModel()
+        }
     }
 }

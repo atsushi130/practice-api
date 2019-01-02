@@ -4,6 +4,7 @@ import com.github.atsushi130.practice.data.entities.ItemEntity
 import com.github.atsushi130.practice.data.tables.Items
 import com.github.atsushi130.practice.domain.models.Item
 import com.github.atsushi130.practice.domain.repositories.ItemRepository
+import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -11,16 +12,20 @@ import org.springframework.stereotype.Repository
 class ItemRepositoryImpl: ItemRepository {
 
     override fun findBy(id: Int): Item? {
-        return ItemEntity
-            .find { Items.id eq id }
-            .singleOrNull()
-            ?.toModel()
+        return transaction {
+            ItemEntity
+                .find { Items.id eq id }
+                .singleOrNull()
+                ?.toModel()
+        }
     }
 
     override fun findBy(registeredUserId: String): List<Item> {
-        return ItemEntity
-            .find { Items.registeredUserId eq registeredUserId }
-            .map { it.toModel() }
+        return transaction {
+            ItemEntity
+                .find { Items.registeredUserId eq registeredUserId }
+                .map { it.toModel() }
+        }
     }
 
     override fun getLatestItems(): List<Item> {
