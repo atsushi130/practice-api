@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 
 @RestControllerAdvice
 @Suppress("unused")
-class ExceptionHandlerControllerAdvisor {
+class ExceptionHandlerControllerAdviser {
 
     @ExceptionHandler(Exception::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST /* 400 */)
