@@ -16,6 +16,7 @@
 ```
 
 ## Create user
+request
 ```
 ❯ curl localhost:8080/sign_up POST\
 -H "OS: iOS"\
@@ -33,6 +34,7 @@ response
 ```
 
 ## Get Latest Items
+request
 ```
 ❯ curl localhost:8080/latest_items GET\
 -H "Cookie: sessionId=5755BECA-1A85-4714-AF0C-4ECE06E5BE16"\
