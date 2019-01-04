@@ -3,7 +3,7 @@ package com.github.atsushi130.practice.data.entities
 import com.github.atsushi130.practice.data.tables.ItemReactions
 import org.jetbrains.exposed.sql.ResultRow
 
-data class ItemReactionEntity(val itemId: Int, val reactionType: String, val reacted_user_id: String) {
+data class ItemReactionEntity(val itemId: Int, val reactionType: String, val reactedUserId: String) {
     companion object {
         fun from(row: ResultRow): ItemReactionEntity {
             return ItemReactionEntity(row[ItemReactions.itemId], row[ItemReactions.reactionType], row[ItemReactions.reactedUserId])
