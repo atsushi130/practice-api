@@ -24,4 +24,11 @@ class UserRepositoryImpl: UserRepository {
         return emptyList()
     }
 
+    override fun create(id: String): User {
+        return transaction {
+            UserEntity
+                .new(id) {}
+                .toModel()
+        }
+    }
 }

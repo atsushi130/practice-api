@@ -1,8 +1,8 @@
 package com.github.atsushi130.practice.interceptor
 
-import com.github.atsushi130.practice.domain.shared.UserContainer
-import com.github.atsushi130.practice.exception.UserStateException
-import com.github.atsushi130.practice.extension.hasNeedHandle
+import com.github.atsushi130.practice.domain.models.*
+import com.github.atsushi130.practice.domain.shared.DeviceContainer
+import com.github.atsushi130.practice.exception.UserDeviceException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.context.annotation.ScopedProxyMode
@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletResponse
 
 @RequestScope
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
-@Component("userStateInterceptor")
+@Component("deviceInterceptor")
 @Suppress("unused")
-class UserStateInterceptor: HandlerInterceptor {
+class DeviceInterceptor: HandlerInterceptor {
 
     @Autowired
-    private lateinit var userContainer: UserContainer
+    private lateinit var deviceContainer: DeviceContainer
 
     @Throws(Exception::class)
     override fun afterCompletion(request: HttpServletRequest, response: HttpServletResponse, handler: Any, e: Exception?) {}
@@ -28,13 +28,26 @@ class UserStateInterceptor: HandlerInterceptor {
     @Throws(Exception::class)
     override fun postHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any, view: ModelAndView?) {}
 
-    @Throws(UserStateException::class)
+    @Throws(UserDeviceException::class)
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
-        if (!this.hasNeedHandle(request)) return true
-        val user = this.userContainer.user
-        if (user.isBanned) throw UserStateException.Banned()
-        // FIXME: user appVersion on request header
-        if (!user.userDevices.first().device.appVersion.meetsRequiredVersion) throw UserStateException.DoesNotMeetsRequiredVersion()
+
+        val osVersion = request.getHeader("OSVersion")
+        val _appVersion = request.getHeader("AppVersion")
+
+        val osType = try {
+            OS.valueOf(request.getHeader("OS"))
+        } catch (throwable: Throwable) {
+            throw UserDeviceException.InvalidOSType()
+        }
+
+        val appVersion = when (osType) {
+            OS.iOS -> iOSAppVersion(_appVersion)
+            OS.Android -> AndroidAppVersion(_appVersion)
+        }
+
+        val device = Device(osType, OSVersion(osVersion), appVersion)
+        this.deviceContainer.setRequestDevice(device)
+
         return true
     }
 }

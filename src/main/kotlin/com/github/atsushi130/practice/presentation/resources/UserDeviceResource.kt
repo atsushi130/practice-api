@@ -19,6 +19,8 @@ data class UserDeviceResource(val id: Int, val userId: String, val osType: Strin
             OS.iOS -> iOSAppVersion(this.appVersion)
             OS.Android -> AndroidAppVersion(this.appVersion)
         }
-        return UserDevice(this.id, this.userId, OSVersion(this.osVersion), appVersion)
+
+        val device = Device(osType, OSVersion(this.osVersion), appVersion)
+        return UserDevice(this.id, this.userId, device)
     }
 }

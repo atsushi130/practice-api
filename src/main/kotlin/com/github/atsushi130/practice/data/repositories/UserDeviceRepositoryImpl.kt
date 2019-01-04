@@ -21,4 +21,17 @@ class UserDeviceRepositoryImpl: UserDeviceRepository {
 
     override fun update(userDevice: UserDevice) {
     }
+
+    override fun create(userId: String, device: Device): UserDevice {
+        return transaction {
+            UserDeviceEntity
+                .new {
+                    this.userId = userId
+                    this.osType = device.osType.name
+                    this.osVersion = device.osVersion.version
+                    this.appVersion = device.appVersion.version
+                }
+                .toModel()
+        }
+    }
 }

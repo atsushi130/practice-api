@@ -2,8 +2,12 @@ package com.github.atsushi130.practice.data.repositories
 
 import com.github.atsushi130.practice.data.tables.Sessions
 import com.github.atsushi130.practice.data.entities.SessionEntity
+import com.github.atsushi130.practice.data.tables.Users
 import com.github.atsushi130.practice.domain.models.Session
+import com.github.atsushi130.practice.domain.models.User
 import com.github.atsushi130.practice.domain.repositories.SessionRepository
+import org.jetbrains.exposed.dao.EntityID
+import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.stereotype.Repository
 
@@ -26,6 +30,20 @@ class SessionRepositoryImpl: SessionRepository {
                 .find { Sessions.userId eq userId }
                 .singleOrNull()
                 ?.toModel()
+        }
+    }
+
+    override fun create(id: String, user: User): Session {
+        return transaction {
+            Sessions
+                .insert {
+                    it[Sessions.id] = EntityID(id, Sessions)
+                    it[Sessions.userId] = EntityID(user.id, Users)
+                }
+            SessionEntity
+                .find { Sessions.userId eq user.id }
+                .single()
+                .toModel()
         }
     }
 }

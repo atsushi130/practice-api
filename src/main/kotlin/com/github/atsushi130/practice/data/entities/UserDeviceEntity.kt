@@ -12,10 +12,10 @@ class UserDeviceEntity(id: EntityID<Int>): IntEntity(id) {
 
     companion object : IntEntityClass<UserDeviceEntity>(UserDevices)
 
-    private val userId by UserDevices.userId
-    private val osType by UserDevices.osType
-    private val osVersion by UserDevices.osVersion
-    private val appVersion by UserDevices.appVersion
+    var userId by UserDevices.userId
+    var osType by UserDevices.osType
+    var osVersion by UserDevices.osVersion
+    var appVersion by UserDevices.appVersion
 
     @Throws(UserDeviceException.InvalidOSType::class)
     fun toModel(): UserDevice {
@@ -25,6 +25,7 @@ class UserDeviceEntity(id: EntityID<Int>): IntEntity(id) {
             OS.iOS -> iOSAppVersion(this.appVersion)
             OS.Android -> AndroidAppVersion(this.appVersion)
         }
-        return UserDevice(this.id.value, this.userId, osVersion, appVersion)
+        val device = Device(osType, osVersion, appVersion)
+        return UserDevice(this.id.value, this.userId, device)
     }
 }
