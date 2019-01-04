@@ -37,9 +37,16 @@ class ApplicationConfiguration: WebMvcConfigurer {
     @Qualifier("userStateInterceptor")
     private lateinit var userStateInterceptor: HandlerInterceptor
 
+    @Autowired
+    @Qualifier("deviceInterceptor")
+    private lateinit var deviceInterceptor: HandlerInterceptor
+
     @Bean
     fun sessionMappedInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.sessionInterceptor)
 
     @Bean
     fun userStateMappedInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.userStateInterceptor)
+
+    @Bean
+    fun deviceMappedInterceptor(): MappedInterceptor = MappedInterceptor(arrayOf("/**"), this.deviceInterceptor)
 }
