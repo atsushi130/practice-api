@@ -2,6 +2,7 @@ package com.github.atsushi130.practice.interceptor
 
 import com.github.atsushi130.practice.domain.shared.UserContainer
 import com.github.atsushi130.practice.exception.UserStateException
+import com.github.atsushi130.practice.extension.hasNeedHandle
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.context.annotation.ScopedProxyMode
@@ -29,10 +30,11 @@ class UserStateInterceptor: HandlerInterceptor {
 
     @Throws(UserStateException::class)
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
+        if (!this.hasNeedHandle(request)) return true
         val user = this.userContainer.user
         if (user.isBanned) throw UserStateException.Banned()
         // FIXME: user appVersion on request header
-        if (!user.userDevices.first().appVersion.meetsRequiredVersion) throw UserStateException.DoesNotMeetsRequiredVersion()
+        if (!user.userDevices.first().device.appVersion.meetsRequiredVersion) throw UserStateException.DoesNotMeetsRequiredVersion()
         return true
     }
 }
