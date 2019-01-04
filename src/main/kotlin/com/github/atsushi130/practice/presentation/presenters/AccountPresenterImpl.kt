@@ -7,12 +7,13 @@ import com.github.atsushi130.practice.domain.usecases.userPasswords.Authenticate
 import com.github.atsushi130.practice.exception.AccountException
 import com.github.atsushi130.practice.presentation.resources.AccountResource
 import com.github.atsushi130.practice.presentation.resources.SessionResource
+import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.lang.Exception
 
 @Component
-class AccountPresenter {
+class AccountPresenterImpl: AccountPresenter {
 
     @Autowired
     private lateinit var userRepository: UserRepository
@@ -27,17 +28,22 @@ class AccountPresenter {
     private lateinit var authenticateUserPasswordUseCase: AuthenticateUserPasswordUseCase
 
     @Throws(AccountException::class)
-    fun signUp(account: AccountResource): SessionResource {
-        val user = this.createAccountUseCase.execute(account.toModel())
-        val session = this.createSessionUseCase.execute(user)
-        return SessionResource.from(session)
+    override fun signUp(account: AccountResource): SessionResource {
+        return transaction {
+            val user = createAccountUseCase.execute(account.toModel())
+            val session = createSessionUseCase.execute(user)
+            return@transaction SessionResource.from(session)
+        }
     }
 
-    fun signIn(account: AccountResource): SessionResource {
+    @Throws(AccountException::class)
+    override fun signIn(account: AccountResource): SessionResource {
         if (this.authenticateUserPasswordUseCase.execute(account.toModel())) throw Exception()
-        val session = this.userRepository.findBy(account.userId)
-            ?.let { return@let this.createSessionUseCase.execute(it) }
-            ?: throw Exception()
-        return SessionResource.from(session)
+        return transaction {
+            val session = userRepository.findBy(account.userId)
+                ?.let { return@let createSessionUseCase.execute(it) }
+                ?: throw Exception()
+            return@transaction SessionResource.from(session)
+        }
     }
 }
