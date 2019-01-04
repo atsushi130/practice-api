@@ -17,7 +17,7 @@
 
 ## Create user
 ```
-❯ curl -i localhost:8080/sign_up POST\
+❯ curl localhost:8080/sign_up POST\
 -H "OS: iOS"\
 -H "OSVersion: 12.0.0"\
 -H "AppVersion: 1.0.0"\
@@ -34,7 +34,7 @@ response
 
 ## Get Latest Items
 ```
-❯ curl -i localhost:8080/latest_items GET\
+❯ curl localhost:8080/latest_items GET\
 -H "Cookie: sessionId=5755BECA-1A85-4714-AF0C-4ECE06E5BE16"\
 -H "OS: iOS"\
 -H "OSVersion: 12.0.0"\
