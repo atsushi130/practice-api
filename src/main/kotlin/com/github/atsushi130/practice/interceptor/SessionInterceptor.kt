@@ -1,9 +1,9 @@
 package com.github.atsushi130.practice.interceptor
 
-import com.github.atsushi130.practice.domain.models.Session
 import com.github.atsushi130.practice.domain.repositories.SessionRepository
 import com.github.atsushi130.practice.domain.shared.UserContainer
 import com.github.atsushi130.practice.exception.AuthenticationException
+import com.github.atsushi130.practice.extension.hasNeedHandle
 import com.github.atsushi130.practice.extension.isSessionId
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
@@ -36,11 +36,10 @@ class SessionInterceptor: HandlerInterceptor {
     @Throws(AuthenticationException::class)
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
 
-        val cookies = request.cookies.toList()
+        if (!this.hasNeedHandle(request)) return true
 
-        if (cookies.isEmpty()) {
-            throw AuthenticationException.CookieNotExists()
-        }
+        val cookies = request.cookies.toList()
+        if (cookies.isEmpty()) throw AuthenticationException.CookieNotExists()
 
         val sessionId = cookies
             .firstOrNull { it.isSessionId }
