@@ -9,7 +9,11 @@ import org.jetbrains.exposed.dao.EntityID
 
 class UserEntity(id: EntityID<String>): Entity<String>(id) {
 
-    companion object : EntityClass<String, UserEntity>(Users)
+    companion object : EntityClass<String, UserEntity>(Users) {
+        fun from(model: User): UserEntity {
+            return UserEntity(EntityID(model.id, Users))
+        }
+    }
 
     val userDevices: List<UserDeviceEntity>
         get() {
