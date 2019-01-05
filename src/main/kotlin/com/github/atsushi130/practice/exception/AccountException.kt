@@ -5,5 +5,8 @@ sealed class AccountException(override val code: ExceptionCode, override val mes
         class InvalidLength: AccountRuleNotEnough(ExceptionCode.Account(0), "user id must be 1-16 characters.")
         class InvalidCharacter: AccountRuleNotEnough(ExceptionCode.Account(1), "contain invalid characters.")
     }
-    class PasswordRuleNotEnough: AccountException(ExceptionCode.Account(2), "password must be 8-16 characters and include at least one lowercase letter,one uppercase letter,and a number.")
+    sealed class PasswordRuleNotEnough(code: ExceptionCode.Account, message: String): AccountException(code, message) {
+        class InvalidLength: PasswordRuleNotEnough(ExceptionCode.Account(2), "password must be 8-16 characters.")
+        class InvalidCharacter: PasswordRuleNotEnough(ExceptionCode.Account(3), "password must be 8-16 characters and include at least one lowercase letter,one uppercase letter,and a number.")
+    }
 }
