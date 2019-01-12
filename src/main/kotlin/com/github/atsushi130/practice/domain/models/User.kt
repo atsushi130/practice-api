@@ -1,9 +1,5 @@
 package com.github.atsushi130.practice.domain.models
 
-import com.github.atsushi130.practice.domain.repositories.UserRepository
-import com.github.atsushi130.practice.exception.UserException
-import org.springframework.beans.factory.annotation.Autowired
-
 /**
  * primary key: id
  * user has many items
