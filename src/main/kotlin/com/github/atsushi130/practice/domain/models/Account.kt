@@ -4,13 +4,15 @@ import com.github.atsushi130.practice.exception.AccountException
 import com.github.atsushi130.practice.extension.alphabets
 import com.github.atsushi130.practice.extension.numbers
 import com.github.atsushi130.practice.extension.password
+import org.springframework.security.crypto.password.StandardPasswordEncoder
 
-data class Account(val userId: String, val password: String) {
+data class Account(val userId: String, val password: String, val salt: String = Salt().value) {
 
     @Throws(AccountException::class)
-    fun validate() {
+    fun validate(): Validated<Account> {
         this.validateAccount()
         this.validatePassword()
+        return Validated(this)
     }
 
     @Throws(AccountException.AccountRuleNotEnough::class)
@@ -39,3 +41,14 @@ data class Account(val userId: String, val password: String) {
             }
     }
 }
+
+val Validated<Account>.userId: String
+    get() {
+        return this.value.userId
+    }
+
+val Validated<Account>.hashedPassword: String
+    get() {
+        val encoder = StandardPasswordEncoder(this.value.salt)
+        return encoder.encode(this.value.password)
+    }

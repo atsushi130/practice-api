@@ -2,6 +2,7 @@ buildscript {
     ext {
         kotlinVersion = '1.2.70'
         springBootVersion = '2.1.0.M3'
+        springSecurityVersion = '4.2.2.RELEASE'
         exposedVersion = '0.10.2'
         postgresqlVersion = '42.2.5'
     }
@@ -15,6 +16,9 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}")
         classpath("org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}")
+        classpath("org.springframework.security:spring-security-core:${springSecurityVersion}")
+        classpath("org.springframework.security:spring-security-web:${springSecurityVersion}")
+        classpath("org.springframework.security:spring-security-config:${springSecurityVersion}")
         classpath("org.jetbrains.exposed:exposed:${exposedVersion}")
         classpath("org.jetbrains.exposed:spring-transaction:${exposedVersion}")
         classpath("org.postgresql:postgresql:${postgresqlVersion}")
@@ -57,6 +61,9 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter')
     compile("org.springframework.boot:spring-boot-starter-data-rest")
     compile "org.springframework.boot:spring-boot-starter-jdbc"
+    compile("org.springframework.security:spring-security-core:${springSecurityVersion}")
+    compile("org.springframework.security:spring-security-web:${springSecurityVersion}")
+    compile("org.springframework.security:spring-security-config:${springSecurityVersion}")
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compile("org.jetbrains.exposed:exposed:${exposedVersion}")
     compile("org.jetbrains.exposed:spring-transaction:${exposedVersion}")

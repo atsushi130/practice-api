@@ -34,9 +34,9 @@ class CreateAccountUseCaseImpl: CreateAccountUseCase {
 
     @Throws(AccountException::class)
     override fun execute(account: Account): User {
-        account.validate()
+        val validatedAccount = account.validate()
         return transaction {
-            userPasswordRepository.create(account)
+            userPasswordRepository.create(validatedAccount)
             val user = userRepository.create(account.userId)
             userDeviceRepository.create(user.id, deviceContainer.device)
             return@transaction user

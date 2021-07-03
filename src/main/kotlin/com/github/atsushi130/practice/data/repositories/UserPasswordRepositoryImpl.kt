@@ -3,6 +3,9 @@ package com.github.atsushi130.practice.data.repositories
 import com.github.atsushi130.practice.data.entities.UserPasswordEntity
 import com.github.atsushi130.practice.data.tables.UserPasswords
 import com.github.atsushi130.practice.domain.models.Account
+import com.github.atsushi130.practice.domain.models.Validated
+import com.github.atsushi130.practice.domain.models.hashedPassword
+import com.github.atsushi130.practice.domain.models.userId
 import com.github.atsushi130.practice.domain.repositories.UserPasswordRepository
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
@@ -12,12 +15,12 @@ import org.springframework.stereotype.Repository
 @Repository
 class UserPasswordRepositoryImpl: UserPasswordRepository {
 
-    override fun create(account: Account) {
+    override fun create(account: Validated<Account>) {
         transaction {
             UserPasswords
             .insert {
                 it[userId] = account.userId
-                it[password] = account.password
+                it[password] = account.hashedPassword
             }
         }
     }
